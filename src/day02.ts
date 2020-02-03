@@ -67,3 +67,70 @@ function getInfo(name :string, age? :number) :string {
 }
 
 console.log(getInfo('shuang', 26))
+
+
+// es5中的类
+// function Person() {
+//   this.name = 'shuang'
+//   this.age = 32
+//   this.run = function() {
+//   console.log('zhang shuang')
+//   }
+// }
+//创建实例
+// let person = new Person()
+// 原型链扩展
+// Person.prototype.sex = 'man'
+
+
+//原型链+对象冒充的组合继承模式
+// function web() {
+//   Person.call(this); // 对象冒充实现继承
+
+// }
+// web.prototype = new Person() // 原型链实现继承
+
+// function Web(name, age) {
+//   Person.call(this, name, age) // 对象冒充继承 实例化子类可以给父类传参
+// }
+
+// 1、定义类
+  // class Person {
+  //   name :string = "shuang" // 默认属性
+
+  //   constructor (name: string) { // 构造函数 实例化的时候触发
+  //     this.name = name
+  //   }
+  //   run(): void {
+  //     console.log(this.name, 'typescript')
+  //   }
+  // }
+
+  // let s = new Person('shuang')
+  // s.run()
+
+
+// 2、类的继承 extends \ spuer
+class Person {
+  name: string;
+  constructor(name: string) {
+    this.name = name
+  }
+  run() :string {
+    return `${this.name} is running`
+  }
+}
+
+class student extends Person {
+  constructor(name: string) {
+    // 初始化父类的构造函数
+    super(name) // 表示调用父类的构造函数
+  }
+  // 当父类和子类有同样的方法时，优先在子类上面找
+  work() {
+    return `${this.name} is working`
+  }
+}
+let s = new student('shuang')
+console.log(s.run())
+console.log(s.work())
