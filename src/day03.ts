@@ -132,3 +132,55 @@ class sars extends xinXin implements xiJun {
     console.log('extends implements class')
   }
 }
+
+// 类的泛型
+class fanxin<T> {
+  public list :T[] = []
+  add(value :T) :void {
+    this.list.push(value)
+  }
+  min() :T {
+    return this.list[0]
+  }
+}
+let fanx = new fanxin<number>() // 实例化类并且传入类型
+fanx.add(2)
+fanx.add(3)
+console.log(fanx.min())
+
+// 泛型接口
+//1
+interface Config {
+  <T>(value :T) :T
+}
+let getconfig :Config = function<T>(value :T) {
+  return value
+}
+console.log(getconfig<string>('shuang 泛型接口'))
+
+// 2
+interface Config2<T> {
+  (value :T) :T
+}
+function getconfig2<T> (value :T) :T {
+  return value
+}
+let myGetData:Config2<string> = getconfig2
+console.log( myGetData('shung') )
+
+class mysqlDb<T> {
+  add(info :T) :boolean {
+    console.log(info)
+    return true
+  }
+}
+
+class user {
+  firstName: string | undefined;
+  lastName: string | undefined;
+}
+let u = new user()
+u.firstName = 'zhang'
+u.lastName = 'shuang'
+let db = new mysqlDb<user>()
+db.add(u)
